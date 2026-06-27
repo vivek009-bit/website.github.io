@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vivek M Menon 
+</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+:root{
+  --ink:#0a0a0a;
+  --ink2:#1a1a1a;
+  --muted:#888;
+  --rule:#e0e0e0;
+  --page:#f7f6f2;
+  --white:#ffffff;
+  --accent:#e63946;
+  --syne:'Syne',sans-serif;
+  --dm:'DM Sans',sans-serif;
+}
+
+body{
+  background:var(--page);
+  color:var(--ink);
+  font-family:var(--dm);
+  font-size:16px;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.25rem 3rem;
+  background:rgba(247,246,242,0.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--rule);
+}
+.logo{
+  font-family:var(--syne);
+  font-weight:800;font-size:1rem;
+  letter-spacing:-.01em;
+  color:var(--ink);
+  text-decoration:none;
+}
+.nav-r{
+  display:flex;align-items:center;gap:2.5rem;
+}
+.nav-r a{
+  font-size:.82rem;
+  color:var(--muted);
+  text-decoration:none;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  transition:color .2s;
+}
+.nav-r a:hover{color:var(--ink);}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  padding-top:5.5rem;
+}
+.hero-left{
+  padding:5rem 3rem 5rem 3rem;
+  display:flex;flex-direction:column;justify-content:space-between;
+  border-right:1px solid var(--rule);
+}
+.hero-right{
+  padding:5rem 3rem;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  position:relative;
+  overflow:hidden;
+}
+
+/* big editorial name */
+.hero-name{
+  font-family:var(--syne);
+  font-weight:800;
+  font-size:clamp(4.5rem,9vw,9rem);
+  line-height:.92;
+  letter-spacing:-.04em;
+  color:var(--ink);
+  margin-bottom:2.5rem;
+}
+.hero-name em{
+  font-style:normal;
+  -webkit-text-stroke:2px var(--ink);
+  color:transparent;
+}
+
+.hero-meta{
+  display:flex;flex-direction:column;gap:1rem;
+}
+.hero-tag{
+  font-size:.75rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+  padding-bottom:.75rem;
+  border-bottom:1px solid var(--rule);
+}
+.hero-desc{
+  font-size:1.05rem;
+  color:#444;
+  line-height:1.75;
+  max-width:340px;
+}
+
+/* role ticker on right */
+.hero-roles-label{
+  font-size:.72rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:1.5rem;
+}
+.role-list{
+  list-style:none;
+  margin-bottom:3rem;
+}
+.role-list li{
+  font-family:var(--syne);
+  font-size:clamp(1.4rem,2.8vw,2.2rem);
+  font-weight:700;
+  line-height:1.3;
+  color:var(--rule);
+  transition:color .15s;
+  cursor:default;
+  padding:.15rem 0;
+  border-bottom:1px solid var(--rule);
+}
+.role-list li.active{color:var(--ink);}
+.role-list li:hover{color:#555;}
+
+/* big background number */
+.hero-bg-num{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-family:var(--syne);
+  font-size:28vw;
+  font-weight:800;
+  color:rgba(0,0,0,.04);
+  pointer-events:none;
+  user-select:none;
+  white-space:nowrap;
+}
+
+/* ── CTA BUTTONS ── */
+.cta-group{
+  display:flex;flex-wrap:wrap;gap:.75rem;
+  margin-top:2.5rem;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.75rem 1.6rem;
+  font-family:var(--dm);
+  font-size:.82rem;
+  font-weight:500;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+  text-decoration:none;
+  border:1px solid var(--ink);
+  border-radius:0;
+  cursor:pointer;
+  transition:all .22s;
+}
+.btn-fill{background:var(--ink);color:#fff;}
+.btn-fill:hover{background:var(--accent);border-color:var(--accent);}
+.btn-ghost{background:transparent;color:var(--ink);}
+.btn-ghost:hover{background:var(--ink);color:#fff;}
+.btn-red{background:var(--accent);color:#fff;border-color:var(--accent);}
+.btn-red:hover{background:#c1121f;border-color:#c1121f;transform:translateY(-1px);}
+
+/* ── SECTION WRAPPER ── */
+.section{padding:6rem 3rem;border-top:1px solid var(--rule);}
+
+.section-header{
+  display:flex;align-items:baseline;justify-content:space-between;
+  margin-bottom:4rem;
+}
+.section-num{
+  font-family:var(--syne);
+  font-weight:800;font-size:6rem;
+  line-height:1;
+  color:rgba(0,0,0,.07);
+  margin-right:1.5rem;
+  flex-shrink:0;
+}
+.section-title{
+  font-family:var(--syne);
+  font-weight:800;
+  font-size:clamp(2rem,4vw,3.5rem);
+  letter-spacing:-.03em;
+  line-height:1;
+  flex:1;
+}
+.section-title-small{
+  font-size:.78rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* ── EXPERIENCE ── */
+.exp-item{
+  display:grid;
+  grid-template-columns:1fr 3fr;
+  gap:2rem;
+  padding:2.5rem 0;
+  border-bottom:1px solid var(--rule);
+}
+.exp-item:first-child{border-top:1px solid var(--rule);}
+.exp-side{padding-top:.2rem;}
+.exp-period{
+  font-size:.78rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:.5rem;
+}
+.exp-company{
+  font-family:var(--syne);
+  font-weight:700;
+  font-size:1.25rem;
+  line-height:1.2;
+}
+.exp-role{
+  font-size:.82rem;
+  color:var(--accent);
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  margin-top:.3rem;
+}
+.exp-body{}
+.exp-desc{
+  font-size:.97rem;
+  color:#444;
+  line-height:1.8;
+  max-width:620px;
+  margin-bottom:1.25rem;
+}
+.exp-link{
+  display:inline-flex;align-items:center;gap:.4rem;
+  font-size:.78rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--ink);
+  text-decoration:none;
+  border-bottom:1px solid var(--ink);
+  padding-bottom:.1rem;
+  transition:color .2s,border-color .2s;
+}
+.exp-link:hover{color:var(--accent);border-color:var(--accent);}
+
+/* ── PROJECTS ── */
+.project-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+}
+.project-card{
+  padding:3rem;
+  border:1px solid var(--rule);
+  margin:-1px 0 0 -1px;
+  position:relative;
+  overflow:hidden;
+  transition:background .25s;
+}
+.project-card:hover{background:var(--white);}
+.project-num{
+  font-family:var(--syne);
+  font-size:5rem;
+  font-weight:800;
+  color:rgba(0,0,0,.06);
+  line-height:1;
+  margin-bottom:1rem;
+}
+.project-name{
+  font-family:var(--syne);
+  font-weight:700;
+  font-size:1.5rem;
+  letter-spacing:-.02em;
+  margin-bottom:.5rem;
+}
+.project-tag-pill{
+  display:inline-block;
+  font-size:.7rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--accent);
+  border:1px solid var(--accent);
+  padding:.2rem .65rem;
+  border-radius:999px;
+  margin-bottom:1rem;
+}
+.project-desc{
+  font-size:.93rem;
+  color:#555;
+  line-height:1.75;
+}
+
+/* ── CONNECT ── */
+.connect-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:0;
+  border-top:1px solid var(--rule);
+}
+.connect-item{
+  padding:2rem 1.5rem;
+  border-right:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  text-decoration:none;
+  color:var(--ink);
+  display:flex;align-items:center;gap:.75rem;
+  transition:background .2s;
+}
+.connect-item:hover{background:var(--white);}
+.connect-icon{
+  width:36px;height:36px;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--rule);
+  flex-shrink:0;
+}
+.connect-icon svg{width:16px;height:16px;}
+.connect-label{
+  font-family:var(--syne);
+  font-weight:700;font-size:.95rem;
+}
+.connect-sub{
+  font-size:.75rem;
+  color:var(--muted);
+  margin-top:.1rem;
+}
+
+/* ── MARQUEE STRIP ── */
+.marquee-strip{
+  background:var(--ink);
+  color:#fff;
+  overflow:hidden;
+  padding:.85rem 0;
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+}
+.marquee-track{
+  display:flex;
+  white-space:nowrap;
+  animation:marquee 20s linear infinite;
+}
+.marquee-track span{
+  font-family:var(--syne);
+  font-size:.82rem;
+  font-weight:600;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  padding:0 2.5rem;
+}
+.marquee-track span.dot{color:var(--accent);}
+@keyframes marquee{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+
+/* ── FOOTER ── */
+footer{
+  padding:2rem 3rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-top:1px solid var(--rule);
+}
+.foot-name{
+  font-family:var(--syne);
+  font-weight:800;
+  font-size:.9rem;
+  letter-spacing:-.01em;
+}
+.foot-right{
+  font-size:.78rem;
+  color:var(--muted);
+  letter-spacing:.04em;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:860px){
+  nav{padding:1rem 1.5rem;}
+  #hero{grid-template-columns:1fr;}
+  .hero-left{padding:3rem 1.5rem;border-right:none;border-bottom:1px solid var(--rule);}
+  .hero-right{padding:2.5rem 1.5rem;}
+  .section{padding:4rem 1.5rem;}
+  .exp-item{grid-template-columns:1fr;}
+  .project-grid{grid-template-columns:1fr;}
+  footer{flex-direction:column;gap:1rem;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#hero">VMM</a>
+  <div class="nav-r">
+    <a href="#experience">Work</a>
+    <a href="#projects">Projects</a>
+    <a href="https://topmate.io/vivek_m26">Connect</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div>
+      <h1 class="hero-name">Vivek<br>M<br><em>Menon</em></h1>
+    </div>
+    <div class="hero-meta">
+      <div class="hero-tag">Kerala, India &nbsp;·&nbsp; Est. 2019</div>
+      <p class="hero-desc">
+        Cyber security analyst, forensic investigator, and corporate trainer helping organisations understand threats before they become incidents.
+      </p>
+      <div class="cta-group">
+        <a href="Vivek_M_Menon_Resume.pdf" target="_blank" class="btn btn-fill">↓ Resume</a>
+        <a href="#experience" class="btn btn-ghost">View Work</a>
+        <!-- ★ YOUR BUTTON — replace href="#" with your URL ★ -->
+        <a href="https://topmate.io/vivek_m26" target="_blank" class="btn btn-red" id="custom-btn">✦ Connect with me</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-bg-num">01</div>
+    <p class="hero-roles-label">Roles</p>
+    <ul class="role-list" id="roleList">
+      <li class="active">Cyber Security Analyst</li>
+      <li>Cyber Forensic Analyst</li>
+      <li>Corporate Trainer</li>
+      <li>Researcher</li>
+      <li>Designer &amp; Developer</li>
+    </ul>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>ISO 27001</span><span class="dot">✦</span>
+    <span>Cyber Forensics</span><span class="dot">✦</span>
+    <span>Risk Management</span><span class="dot">✦</span>
+    <span>Incident Response</span><span class="dot">✦</span>
+    <span>Payment Card Security</span><span class="dot">✦</span>
+    <span>Corporate Training</span><span class="dot">✦</span>
+    <span>IDS / IPS</span><span class="dot">✦</span>
+    <span>ISO 27005</span><span class="dot">✦</span>
+    <span>ISO 27001</span><span class="dot">✦</span>
+    <span>Cyber Forensics</span><span class="dot">✦</span>
+    <span>Risk Management</span><span class="dot">✦</span>
+    <span>Incident Response</span><span class="dot">✦</span>
+    <span>Payment Card Security</span><span class="dot">✦</span>
+    <span>Corporate Training</span><span class="dot">✦</span>
+    <span>IDS / IPS</span><span class="dot">✦</span>
+    <span>ISO 27005</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <div>
+      <div class="section-title-small">Work Experience</div>
+      <h2 class="section-title">Endeavour</h2>
+    </div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-side">
+      <div class="exp-period">2024 – Present</div>
+      <div class="exp-company">Koenig Solutions</div>
+      <div class="exp-role">Corporate Trainer</div>
+    </div>
+    <div class="exp-body">
+      <p class="exp-desc">
+        Delivering high-impact training programmes to global clients across diverse industries — covering Information Security, Cybercrime, Cyber Forensics, Risk Management, and Payment Card Security. Each programme is tailored to meet specific client requirements and regional compliance needs, incorporating hands-on exercises, case studies, and live simulations that empower professionals to address emerging threats with confidence.
+      </p>
+      <a class="exp-link" href="https://www.koenig-solutions.com" target="_blank">Visit Organisation →</a>
+    </div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-side">
+      <div class="exp-period">2019 – 2024</div>
+      <div class="exp-company">Avanzo Cyber Security Solutions</div>
+      <div class="exp-role">Technical Analyst</div>
+    </div>
+    <div class="exp-body">
+      <p class="exp-desc">
+        Played a central role in enhancing cybersecurity frameworks for the organisation and its clients — conducting in-depth cybercrime investigations, implementing ISO 27001 and ISO 27005 standards, and leading a full overhaul of networking and communication infrastructure. Managed technical security tooling including firewalls and IDS/IPS systems to keep defences current against evolving threat landscapes.
+      </p>
+      <a class="exp-link" href="https://avanzo.in" target="_blank">Visit Organisation →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <div>
+      <div class="section-title-small">Selected Work</div>
+      <h2 class="section-title">Projects</h2>
+    </div>
+  </div>
+
+  <div class="project-grid">
+    <div class="project-card">
+      <div class="project-num">01</div>
+      <span class="project-tag-pill">Security · Mobile</span>
+      <div class="project-name">PARY</div>
+      <p class="project-desc">
+        Protect Account Recover Yourself — an application that ensures account safety through two-factor authentication, leveraging hardware acceleration on-device for a seamless and fast security layer.
+      </p>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <span class="project-tag-pill">Infrastructure · Gaming</span>
+      <div class="project-name">EGS — Enrich-GameStophe</div>
+      <p class="project-desc">
+        Infrastructure development unit of Anarchy Industries. As a founding member, catalysed technological advancement through innovative software and hardware tools — shaping the technical direction from the ground up.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CONNECT -->
+<section class="section" id="connect">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <div>
+      <div class="section-title-small">Let's Talk</div>
+      <h2 href="https://topmate.io/vivek_m26" class="section-title">Connect</h2>
+    </div>
+  </div>
+
+  <div class="connect-grid">
+    <a class="connect-item" href="https://www.linkedin.com/in/vivek-m-menon/" target="_blank">
+      <div class="connect-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </div>
+      <div>
+        <div class="connect-label">LinkedIn</div>
+        <div class="connect-sub">vivek-m-menon</div>
+      </div>
+    </a>
+
+    <a class="connect-item" href="https://www.instagram.com/vivek_m_menon" target="_blank">
+      <div class="connect-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+      </div>
+      <div>
+        <div class="connect-label">Instagram</div>
+        <div class="connect-sub">vivek_m_menon</div>
+      </div>
+    </a>
+
+    <a class="connect-item" href="https://www.vivekmmenon.blogspot.com" target="_blank">
+      <div class="connect-icon">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.976 24H2.026C.908 24 0 23.09 0 21.974V2.025C0 .909.909 0 2.026 0H21.97C23.088 0 24 .909 24 2.025v19.95C24 23.091 23.09 24 21.976 24zm-7.314-4.985c3.13 0 5.656-2.527 5.656-5.655 0-2.39-1.492-4.434-3.606-5.267a3.608 3.608 0 0 0-.688-3.546A3.61 3.61 0 0 0 13.26 3H8.125A3.614 3.614 0 0 0 4.51 6.616v10.744A3.614 3.614 0 0 0 8.125 21h6.537zm-5.88-12.744H12.8a1.204 1.204 0 1 1 0 2.407H8.782a1.204 1.204 0 0 1 0-2.407zm5.655 8.16H8.782a1.204 1.204 0 1 1 0-2.408h5.655a1.204 1.204 0 0 1 0 2.407z"/></svg>
+      </div>
+      <div>
+        <div class="connect-label">Blog</div>
+        <div class="connect-sub">vivekmmenon.blogspot.com</div>
+      </div>
+    </a>
+
+    <a class="connect-item" href="Vivek_M_Menon_Resume.pdf" target="_blank">
+      <div class="connect-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      </div>
+      <div>
+        <div class="connect-label">Resume / CV</div>
+        <div class="connect-sub">Download PDF</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="foot-name">Vivek M Menon</span>
+  <span class="foot-right">Cyber Security &nbsp;·&nbsp; Forensics &nbsp;·&nbsp; Training &nbsp;·&nbsp; Kerala, India</span>
+</footer>
+
+<script>
+/* role cycler */
+const items = document.querySelectorAll('#roleList li');
+let cur = 0;
+setInterval(() => {
+  items[cur].classList.remove('active');
+  cur = (cur + 1) % items.length;
+  items[cur].classList.add('active');
+}, 2200);
+</script>
+</body>
+</html>
